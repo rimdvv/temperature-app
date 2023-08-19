@@ -1,42 +1,43 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
   palette: {
     primary: {
-      main: "#333333",
+      main: '#333333',
     },
     secondary: {
-      main: "#58C187",
+      main: '#58C187',
+      alt: '#535EE9',
     },
     neutral: {
-      main: "#676663",
+      main: '#676663',
     },
     background: {
-      default: "#ffffff",
-      alt: "#F8F7F4",
+      default: '#ffffff',
+      alt: '#F8F7F4',
     },
   },
   typography: {
-    fontFamily: ["DM Sans", "sans-serif"].join(","),
+    fontFamily: ['DM Sans', 'sans-serif'].join(','),
     fontSize: 14,
     h1: {
-      fontFamily: ["DM Sans", "sans-serif"].join(","),
+      fontFamily: ['DM Sans', 'sans-serif'].join(','),
       fontSize: 40,
     },
     h2: {
-      fontFamily: ["DM Sans", "sans-serif"].join(","),
+      fontFamily: ['DM Sans', 'sans-serif'].join(','),
       fontSize: 32,
     },
     h3: {
-      fontFamily: ["DM Sans", "sans-serif"].join(","),
+      fontFamily: ['DM Sans', 'sans-serif'].join(','),
       fontSize: 24,
     },
     h4: {
-      fontFamily: ["DM Sans", "sans-serif"].join(","),
+      fontFamily: ['DM Sans', 'sans-serif'].join(','),
       fontSize: 20,
     },
     h5: {
-      fontFamily: ["DM Sans", "sans-serif"].join(","),
+      fontFamily: ['DM Sans', 'sans-serif'].join(','),
       fontSize: 16,
     },
   },

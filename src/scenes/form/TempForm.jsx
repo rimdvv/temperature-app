@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import { db } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
+import SharedButton from '../../components/SharedButton';
 
 function TempForm() {
   const theme = useTheme();
@@ -30,12 +31,12 @@ function TempForm() {
         timestamp: serverTimestamp(),
       });
       console.log('Document written with ID: ', docRef.id);
+      navigate('/');
     } catch (e) {
       console.error('Error adding document: ', e);
     }
-    navigate('/');
   };
-  console.log(tempValue);
+  // console.log(tempValue);
 
   return (
     <Box m='1.5rem 2.5rem'>
@@ -79,20 +80,7 @@ function TempForm() {
             {tempValue}°C
           </Typography>
         </Box>
-        <Button
-          onClick={handleSubmitTempValue}
-          sx={{
-            padding: '0.5rem 2rem',
-            mt: '4rem',
-            borderRadius: '16px',
-            fontSize: '16px',
-            fontWeight: 'bold',
-            backgroundColor: '#535EE9',
-          }}
-          variant='contained'
-        >
-          Save
-        </Button>
+        <SharedButton onClick={handleSubmitTempValue} text='Save' />
       </Box>
     </Box>
   );
