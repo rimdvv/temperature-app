@@ -16,7 +16,6 @@ function MedTypeBox({ text, handleMedType, active, image }) {
       flex='1 1 100%'
       backgroundColor={theme.palette.background.alt}
       borderRadius='0.55rem'
-      // boxShadow={3}
       onClick={() => handleMedType(lcText)}
       sx={{
         border: active === lcText ? 1 : 0,

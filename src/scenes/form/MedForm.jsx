@@ -24,6 +24,7 @@ import dexibuprofen from '../../assets/dexibuprofen.svg';
 import ibuprofen from '../../assets/ibuprofen.svg';
 import SharedButton from '../../components/SharedButton';
 import MedTypeBox from '../../components/MedTypeBox';
+import SharedDateTimePicker from '../../components/SharedDateTimePicker';
 
 function MedForm() {
   const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)');
@@ -77,12 +78,13 @@ function MedForm() {
           Medicine
         </Typography>
       </Box>
+      <SharedDateTimePicker />
       <Box>
         <Box
           display='flex'
           alignItems='center'
           justifyContent='center'
-          mt='3rem'
+          mt='4rem'
         >
           <Typography variant='h5' fontWeight='bold'>
             Select the medication

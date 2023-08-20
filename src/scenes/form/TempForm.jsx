@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import {
-  Button,
-  Box,
-  Typography,
-  Stack,
-  Slider,
-  useTheme,
-} from '@mui/material';
+import { Box, Typography, Stack, Slider, useTheme } from '@mui/material';
 import { db } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import SharedButton from '../../components/SharedButton';
+import SharedDateTimePicker from '../../components/SharedDateTimePicker';
 
 function TempForm() {
   const theme = useTheme();
@@ -45,6 +39,7 @@ function TempForm() {
           Temperature
         </Typography>
       </Box>
+      <SharedDateTimePicker />
       <Box
         mt='3rem'
         display='flex'
