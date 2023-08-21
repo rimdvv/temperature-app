@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   Divider,
@@ -11,7 +11,7 @@ import {
   ListItemText,
   Typography,
   useTheme,
-} from "@mui/material";
+} from '@mui/material';
 import {
   ChevronLeft,
   ChevronRightOutlined,
@@ -19,30 +19,31 @@ import {
   ThermostatOutlined,
   ViewTimelineOutlined,
   MedicationOutlined,
-} from "@mui/icons-material";
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import logo from "../assets/logo.svg";
+  BoltRounded,
+} from '@mui/icons-material';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.svg';
 
 const navItems = [
   {
-    text: "Dashboard",
+    text: 'Dashboard',
     icon: <HomeOutlined />,
   },
   {
-    text: "Insights",
+    text: 'Insights',
     icon: null,
   },
   {
-    text: "Timeline",
+    text: 'Timeline',
     icon: <ViewTimelineOutlined />,
   },
   {
-    text: "Temperature",
+    text: 'Temperature',
     icon: <ThermostatOutlined />,
   },
   {
-    text: "Medicine",
+    text: 'Medicine',
     icon: <MedicationOutlined />,
   },
 ];
@@ -54,7 +55,7 @@ const Sidebar = ({
   isNonMobile,
 }) => {
   const { pathname } = useLocation();
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState('');
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -63,41 +64,43 @@ const Sidebar = ({
   }, [pathname]);
 
   return (
-    <Box component="nav">
+    <Box component='nav'>
       {isSidebarOpen && (
         <Drawer
           open={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
-          variant="persistent"
-          anchor="left"
+          variant='persistent'
+          anchor='left'
           sx={{
             width: drawerWidth,
-            "& .MuiDrawer-paper": {
+            '& .MuiDrawer-paper': {
               color: theme.palette.primary.main,
-              backgroundColor: theme.palette.background.default,
-              boxSixing: "border-box",
+              backgroundColor: '#F9F9F9',
+              boxSixing: 'border-box',
               width: drawerWidth,
-              boxShadow: 3,
             },
           }}
         >
-          <Box width="100%">
-            <Box m="1.5rem 2rem 2rem 2rem">
+          <Box width='100%'>
+            <Box m='1.5rem 2rem 2rem 2rem'>
               <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
+                display='flex'
+                alignItems='center'
+                justifyContent='space-between'
                 color={theme.palette.primary.main}
               >
-                <Box display="flex" alignItems="center">
-                  <Typography variant="h2" sx={{ fontWeight: "bold" }}>
+                <Box display='flex' alignItems='center'>
+                  <Typography
+                    variant='h2'
+                    sx={{ fontWeight: 'bold', marginRight: '0.5rem' }}
+                  >
                     Tempo
                   </Typography>
-                  <img src={logo} alt="logo" />
+                  <img src={logo} alt='logo' />
                 </Box>
                 {!isNonMobile && (
                   <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-                    <ChevronLeft sx={{ ml: "2rem" }} />
+                    <ChevronLeft sx={{ ml: '2rem' }} />
                   </IconButton>
                 )}
               </Box>
@@ -107,10 +110,10 @@ const Sidebar = ({
                 if (!icon) {
                   return (
                     <Typography
-                      variant="h5"
-                      color={theme.palette.neutral.main}
+                      variant='h5'
+                      color={theme.palette.primary.main}
                       key={text}
-                      sx={{ m: "2rem 0 1rem 2rem" }}
+                      sx={{ m: '2rem 0 1rem 2rem' }}
                     >
                       {text}
                     </Typography>
@@ -127,29 +130,32 @@ const Sidebar = ({
                       }}
                       sx={{
                         backgroundColor:
-                          active === lcText
-                            ? theme.palette.background.alt
-                            : "transparent",
+                          active === lcText ? '#EDEDED' : 'transparent',
                         color:
                           active === lcText
-                            ? theme.palette.neutral.main
-                            : theme.palette.primary.main,
+                            ? theme.palette.primary.main
+                            : '#5C5F62',
                       }}
                     >
                       <ListItemIcon
                         sx={{
-                          ml: "1rem",
+                          ml: '1rem',
                           color:
                             active === lcText
-                              ? theme.palette.neutral.main
-                              : theme.palette.primary.main,
+                              ? theme.palette.primary.main
+                              : '#5C5F62',
                         }}
                       >
                         {icon}
                       </ListItemIcon>
-                      <ListItemText primary={text} />
+                      <ListItemText
+                        primary={text}
+                        sx={{
+                          '.MuiListItemText-primary': { fontWeight: 'bold' },
+                        }}
+                      />
                       {active === lcText && (
-                        <ChevronRightOutlined sx={{ ml: "auto" }} />
+                        <ChevronRightOutlined sx={{ ml: 'auto' }} />
                       )}
                     </ListItemButton>
                   </ListItem>

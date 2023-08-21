@@ -2,21 +2,13 @@ import React, { useState } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import {
   Box,
-  Button,
   Typography,
   useTheme,
   useMediaQuery,
-  ButtonBase,
   FormControl,
   Input,
   InputAdornment,
-  FormHelperText,
-  Card,
-  CardMedia,
-  Grid,
 } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
-import { styled } from '@mui/material/styles';
 import { db } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import acetaminophen from '../../assets/acetaminophen.svg';
@@ -32,9 +24,15 @@ function MedForm() {
   const navigate = useNavigate();
 
   const [values, setValues] = useState({
+    time: '',
     medType: '',
     dosage: 0,
   });
+
+  const [selectedDateTime, setSelectedDateTime] = useState(null);
+
+  // console.log('time', values.time);
+  // console.log('values', values);
   const [active, setActive] = useState('');
 
   const handleMedType = (text) => {
@@ -46,22 +44,31 @@ function MedForm() {
     setValues({ ...values, dosage: parseInt(e.target.value) });
   };
 
+  const handleDateTime = (newValue) => {
+    setSelectedDateTime(newValue);
+    setValues({ ...values, time: newValue.$d });
+  };
+
   const onSubmitHandler = async (e) => {
     if (values.medType.trim().length === 0) {
       e.preventDefault();
       alert('Select the medication😊');
       return;
-    } else if (values.dosage === 0) {
+    } else if (values.dosage === 0 || isNaN(values.dosage)) {
       e.preventDefault();
       alert('Enter the given dose😊');
+      return;
+    } else if (values.time === '') {
+      e.preventDefault();
+      alert('Select the time and date when the medication was given😊');
       return;
     } else {
       e.preventDefault();
       try {
         const docRef = await addDoc(collection(db, 'medicine'), {
+          time: values.time,
           medType: values.medType,
           dosage: values.dosage,
-          timestamp: serverTimestamp(),
         });
         console.log('Document written with ID: ', docRef.id);
         navigate('/');
@@ -78,7 +85,10 @@ function MedForm() {
           Medicine
         </Typography>
       </Box>
-      <SharedDateTimePicker />
+      <SharedDateTimePicker
+        onChange={handleDateTime}
+        value={selectedDateTime}
+      />
       <Box>
         <Box
           display='flex'
@@ -86,7 +96,7 @@ function MedForm() {
           justifyContent='center'
           mt='4rem'
         >
-          <Typography variant='h5' fontWeight='bold'>
+          <Typography variant='h6' fontWeight='bold'>
             Select the medication
           </Typography>
         </Box>
@@ -130,7 +140,7 @@ function MedForm() {
           justifyContent='center'
           mt='3rem'
         >
-          <Typography variant='h5' fontWeight='bold'>
+          <Typography variant='h6' fontWeight='bold'>
             Enter the given dose
           </Typography>
           <Box

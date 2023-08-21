@@ -12,17 +12,32 @@ function TempForm() {
 
   const tempMin = 34;
   const tempMax = 41;
-  const [tempValue, setTempValue] = useState(37);
+  const [values, setValues] = useState({
+    temp: 37,
+    time: '',
+  });
+  const [selectedDateTime, setSelectedDateTime] = useState(null);
 
   const handleTempValue = (e) => {
-    setTempValue(e.target.value);
+    setValues({ ...values, temp: e.target.value });
   };
+
+  const handleDateTime = (newValue) => {
+    setSelectedDateTime(newValue);
+    setValues({ ...values, time: newValue.$d });
+  };
+
   const handleSubmitTempValue = async (e) => {
+    if (values.time === '') {
+      e.preventDefault();
+      alert('Select the time and date when the temperature was taken😊');
+      return;
+    }
     e.preventDefault();
     try {
       const docRef = await addDoc(collection(db, 'temperature'), {
-        temperature: tempValue,
-        timestamp: serverTimestamp(),
+        temperature: values.temp,
+        time: values.time,
       });
       console.log('Document written with ID: ', docRef.id);
       navigate('/');
@@ -30,7 +45,6 @@ function TempForm() {
       console.error('Error adding document: ', e);
     }
   };
-  // console.log(tempValue);
 
   return (
     <Box m='1.5rem 2.5rem'>
@@ -39,7 +53,10 @@ function TempForm() {
           Temperature
         </Typography>
       </Box>
-      <SharedDateTimePicker />
+      <SharedDateTimePicker
+        onChange={handleDateTime}
+        value={selectedDateTime}
+      />
       <Box
         mt='3rem'
         display='flex'
@@ -52,16 +69,16 @@ function TempForm() {
             aria-label='Temperature'
             orientation='vertical'
             step={0.1}
-            value={tempValue}
+            value={values.temp}
             onChange={handleTempValue}
             valueLabelDisplay='on'
             min={tempMin}
             max={tempMax}
             sx={{
-              color: '#F55F4B',
+              color: theme.palette.primary.alt,
               width: 12,
               '& .MuiSlider-valueLabel': {
-                backgroundColor: '#F55F4B',
+                backgroundColor: theme.palette.primary.alt,
                 marginRight: '0.5rem',
               },
               '& .MuiSlider-markLabel': {
@@ -72,7 +89,7 @@ function TempForm() {
         </Stack>
         <Box mt='2rem'>
           <Typography variant='h4' fontWeight='bold'>
-            {tempValue}°C
+            {values.temp}°C
           </Typography>
         </Box>
         <SharedButton onClick={handleSubmitTempValue} text='Save' />

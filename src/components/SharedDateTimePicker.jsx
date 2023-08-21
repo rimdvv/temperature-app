@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import dayjs from 'dayjs';
-import { Box } from '@mui/material';
-import { red } from '@mui/material/colors';
+import { Box, useTheme } from '@mui/material';
 
-function SharedDateTimePicker() {
-  const [selectedDateTime, setSelectedDateTime] = useState(
-    dayjs('2023-08-20T08:30')
-  );
-
-  console.log('selectedDateTime', selectedDateTime);
+function SharedDateTimePicker({ onChange, value }) {
+  const theme = useTheme();
   return (
     <Box
       display='flex'
@@ -23,8 +17,18 @@ function SharedDateTimePicker() {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={['DateTimePicker']}>
           <DateTimePicker
-            value={selectedDateTime}
-            onChange={(newValue) => setSelectedDateTime(newValue)}
+            value={value}
+            onChange={onChange}
+            sx={{
+              backgroundColor: theme.palette.background.alt,
+              padding: '1rem 1.5rem',
+              borderRadius: '32px',
+            }}
+            slotProps={{
+              textField: {
+                variant: 'standard',
+              },
+            }}
           />
         </DemoContainer>
       </LocalizationProvider>
