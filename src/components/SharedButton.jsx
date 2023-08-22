@@ -4,6 +4,7 @@ import { useTheme } from '@emotion/react';
 
 function SharedButton({ text, onClick }) {
   const theme = useTheme();
+
   return (
     <Box display='flex' alignItems='center' justifyContent='center'>
       <Button

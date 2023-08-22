@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import {
   Box,
   Typography,
@@ -31,8 +31,6 @@ function MedForm() {
 
   const [selectedDateTime, setSelectedDateTime] = useState(null);
 
-  // console.log('time', values.time);
-  // console.log('values', values);
   const [active, setActive] = useState('');
 
   const handleMedType = (text) => {
@@ -41,7 +39,7 @@ function MedForm() {
   };
 
   const handleDosage = (e) => {
-    setValues({ ...values, dosage: parseInt(e.target.value) });
+    setValues({ ...values, dosage: parseFloat(e.target.value) });
   };
 
   const handleDateTime = (newValue) => {
@@ -66,8 +64,9 @@ function MedForm() {
       e.preventDefault();
       try {
         const docRef = await addDoc(collection(db, 'medicine'), {
+          type: 'medicine',
           time: values.time,
-          medType: values.medType,
+          value: values.medType,
           dosage: values.dosage,
         });
         console.log('Document written with ID: ', docRef.id);
@@ -150,6 +149,7 @@ function MedForm() {
           >
             <FormControl variant='standard' sx={{ m: 1, mt: 3, width: '20ch' }}>
               <Input
+                type='number'
                 onChange={handleDosage}
                 endAdornment={
                   <InputAdornment position='end'>ml</InputAdornment>

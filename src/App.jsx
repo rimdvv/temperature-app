@@ -9,6 +9,8 @@ import MedForm from './scenes/form/MedForm';
 import Layout from './scenes/layout/Layout';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../src/theme';
+import EditTempForm from './scenes/form/EditTempForm';
+import EditMedForm from './scenes/form/EditMedForm';
 
 function App() {
   return (
@@ -18,13 +20,21 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route element={<Layout />}>
-              <Route path='/' element={<Navigate to='/dashboard' replace />} />
-              <Route path='/dashboard' element={<Dashboard />} />
+              <Route path='/' element={<Navigate to='/timeline' replace />} />
+              {/* <Route path='/dashboard' element={<Dashboard />} /> */}
               <Route path='/timeline' element={<Timeline />} />
-              <Route path='/temperature' element={<Temperature />} />
+              {/* <Route path='/temperature' element={<Temperature />} /> */}
               <Route path='/temperature/new' element={<TempForm />} />
-              <Route path='/medicine' element={<Medicine />} />
+              <Route
+                path='/temperature/update/:doc_id'
+                element={<EditTempForm />}
+              />
+              {/* <Route path='/medicine' element={<Medicine />} /> */}
               <Route path='/medicine/new' element={<MedForm />} />
+              <Route
+                path='/medicine/update/:doc_id'
+                element={<EditMedForm />}
+              />
             </Route>
           </Routes>
         </ThemeProvider>

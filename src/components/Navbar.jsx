@@ -1,32 +1,24 @@
 import React, { useState } from 'react';
-import {
-  Menu as MenuIcon,
-  ArrowDropDownOutlined,
-  AccountCircleRounded,
-  AddCircleOutline,
-} from '@mui/icons-material';
+import { Menu as MenuIcon, AddCircleOutlineRounded } from '@mui/icons-material';
 import {
   AppBar,
   Button,
   Box,
   IconButton,
   Toolbar,
-  Menu,
-  MenuItem,
   useTheme,
   Modal,
   Divider,
+  Typography,
 } from '@mui/material';
+import templogo from '../assets/templogo.svg';
+import medlogo from '../assets/medlogo.svg';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const theme = useTheme();
   const navigate = useNavigate();
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const isOpen = Boolean(anchorEl);
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const handleAddModalOpen = () => setAddModalOpen(!addModalOpen);
 
@@ -52,8 +44,11 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
           }}
         >
           <Button onClick={handleAddModalOpen}>
-            <AddCircleOutline
-              sx={{ fontSize: '24px', color: theme.palette.secondary.alt }}
+            <AddCircleOutlineRounded
+              sx={{
+                fontSize: '32px',
+                color: theme.palette.secondary.alt,
+              }}
             />
           </Button>
           <Modal open={addModalOpen} onClose={handleAddModalOpen}>
@@ -75,53 +70,50 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '1rem',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
                 }}
               >
-                <Button
+                <Box
+                  display='flex'
+                  alignItems='center'
+                  justifyContent='flex-start'
                   onClick={() => {
                     setAddModalOpen(false);
                     navigate('/temperature/new');
                   }}
+                  sx={{ cursor: 'pointer' }}
                 >
-                  Add Temperature
-                </Button>
+                  <img src={templogo} alt='templogo' />
+                  <Typography
+                    fontSize='14px'
+                    fontWeight='medium'
+                    marginLeft='2rem'
+                  >
+                    TEMPERATURE
+                  </Typography>
+                </Box>
                 <Divider style={{ width: '100%' }} />
-                <Button
+                <Box
+                  display='flex'
+                  alignItems='center'
+                  justifyContent='flex-start'
                   onClick={() => {
                     setAddModalOpen(false);
                     navigate('/medicine/new');
                   }}
+                  sx={{ cursor: 'pointer' }}
                 >
-                  Add Medicine
-                </Button>
+                  <img src={medlogo} alt='medlogo' />
+                  <Typography
+                    fontSize='14px'
+                    fontWeight='medium'
+                    marginLeft='2rem'
+                  >
+                    MEDICINE
+                  </Typography>
+                </Box>
               </Box>
             </Box>
           </Modal>
-          <Button
-            onClick={handleClick}
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              textTransform: 'none',
-              gap: '1rem',
-            }}
-          >
-            <AccountCircleRounded />
-            <ArrowDropDownOutlined
-              sx={{ color: theme.palette.neutral.main, fontSize: '25px' }}
-            />
-          </Button>
-          <Menu
-            anchorEl={anchorEl}
-            open={isOpen}
-            onClose={handleClose}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-          >
-            <MenuItem onClick={handleClose}>Log Out</MenuItem>
-          </Menu>
         </Box>
       </Toolbar>
     </AppBar>

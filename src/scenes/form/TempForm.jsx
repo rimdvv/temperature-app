@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { Box, Typography, Stack, Slider, useTheme } from '@mui/material';
 import { db } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +16,8 @@ function TempForm() {
     temp: 37,
     time: '',
   });
+
+  // console.log('values', values);
   const [selectedDateTime, setSelectedDateTime] = useState(null);
 
   const handleTempValue = (e) => {
@@ -36,8 +38,9 @@ function TempForm() {
     e.preventDefault();
     try {
       const docRef = await addDoc(collection(db, 'temperature'), {
-        temperature: values.temp,
+        type: 'temperature',
         time: values.time,
+        value: values.temp,
       });
       console.log('Document written with ID: ', docRef.id);
       navigate('/');

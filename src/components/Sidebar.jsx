@@ -26,26 +26,26 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 
 const navItems = [
-  {
-    text: 'Dashboard',
-    icon: <HomeOutlined />,
-  },
-  {
-    text: 'Insights',
-    icon: null,
-  },
+  // {
+  //   text: 'Dashboard',
+  //   icon: <HomeOutlined />,
+  // },
+  // {
+  //   text: 'Insights',
+  //   icon: null,
+  // },
   {
     text: 'Timeline',
     icon: <ViewTimelineOutlined />,
   },
-  {
-    text: 'Temperature',
-    icon: <ThermostatOutlined />,
-  },
-  {
-    text: 'Medicine',
-    icon: <MedicationOutlined />,
-  },
+  // {
+  //   text: 'Temperature',
+  //   icon: <ThermostatOutlined />,
+  // },
+  // {
+  //   text: 'Medicine',
+  //   icon: <MedicationOutlined />,
+  // },
 ];
 
 const Sidebar = ({
@@ -89,7 +89,12 @@ const Sidebar = ({
                 justifyContent='space-between'
                 color={theme.palette.primary.main}
               >
-                <Box display='flex' alignItems='center'>
+                <Box
+                  display='flex'
+                  alignItems='center'
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => navigate('/')}
+                >
                   <Typography
                     variant='h2'
                     sx={{ fontWeight: 'bold', marginRight: '0.5rem' }}
@@ -100,7 +105,7 @@ const Sidebar = ({
                 </Box>
                 {!isNonMobile && (
                   <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-                    <ChevronLeft sx={{ ml: '2rem' }} />
+                    <ChevronLeft sx={{ ml: '8px' }} />
                   </IconButton>
                 )}
               </Box>
@@ -127,6 +132,7 @@ const Sidebar = ({
                       onClick={() => {
                         navigate(`/${lcText}`);
                         setActive(lcText);
+                        setIsSidebarOpen(!isSidebarOpen);
                       }}
                       sx={{
                         backgroundColor:
@@ -134,7 +140,7 @@ const Sidebar = ({
                         color:
                           active === lcText
                             ? theme.palette.primary.main
-                            : '#5C5F62',
+                            : theme.palette.neutral.main,
                       }}
                     >
                       <ListItemIcon
@@ -143,7 +149,7 @@ const Sidebar = ({
                           color:
                             active === lcText
                               ? theme.palette.primary.main
-                              : '#5C5F62',
+                              : theme.palette.neutral.main,
                         }}
                       >
                         {icon}

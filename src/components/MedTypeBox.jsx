@@ -2,7 +2,6 @@ import { Box, Typography, useTheme } from '@mui/material';
 import React from 'react';
 
 function MedTypeBox({ text, handleMedType, active, image }) {
-  const lcText = text.toLowerCase();
   const theme = useTheme();
 
   return (
@@ -16,11 +15,10 @@ function MedTypeBox({ text, handleMedType, active, image }) {
       flex='1 1 100%'
       backgroundColor={theme.palette.background.alt}
       borderRadius='0.55rem'
-      onClick={() => handleMedType(lcText)}
+      onClick={() => handleMedType(text)}
       sx={{
-        border: active === lcText ? 1 : 0,
-        borderColor:
-          active === lcText ? theme.palette.secondary.alt : undefined,
+        border: active === text ? 1 : 0,
+        borderColor: active === text ? theme.palette.secondary.alt : undefined,
       }}
     >
       <Box display='flex' justifyContent='center' alignItems='center'>

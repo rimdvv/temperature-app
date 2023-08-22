@@ -11,7 +11,7 @@ export const theme = createTheme({
       alt: '#535EE9',
     },
     neutral: {
-      main: '#17345C',
+      main: '#5C5F62',
     },
     background: {
       default: '#ffffff',
