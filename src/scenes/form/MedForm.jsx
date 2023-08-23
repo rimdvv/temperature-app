@@ -26,7 +26,7 @@ function MedForm() {
   const [values, setValues] = useState({
     time: '',
     medType: '',
-    dosage: 0,
+    dosage: '',
   });
 
   const [selectedDateTime, setSelectedDateTime] = useState(null);
@@ -150,6 +150,7 @@ function MedForm() {
             <FormControl variant='standard' sx={{ m: 1, mt: 3, width: '20ch' }}>
               <Input
                 type='number'
+                value={values.dosage}
                 onChange={handleDosage}
                 endAdornment={
                   <InputAdornment position='end'>ml</InputAdornment>
