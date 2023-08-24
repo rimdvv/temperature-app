@@ -31,7 +31,7 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
       }}
     >
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        <Box>
+        <Box display='flex' justifyContent='center' alignItems='center'>
           <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
             <MenuIcon />
           </IconButton>
@@ -51,6 +51,11 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
               }}
             />
           </Button>
+          <Box sx={{ cursor: 'pointer' }} onClick={() => navigate('/login')}>
+            <Typography color={theme.palette.neutral.main} fontWeight='bold'>
+              Log in
+            </Typography>
+          </Box>
           <Modal open={addModalOpen} onClose={handleAddModalOpen}>
             <Box
               sx={{

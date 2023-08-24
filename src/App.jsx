@@ -11,6 +11,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../src/theme';
 import EditTempForm from './scenes/form/EditTempForm';
 import EditMedForm from './scenes/form/EditMedForm';
+import Signup from './scenes/member/Signup';
+import Login from './scenes/member/Login';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/login' element={<Login />} />
             <Route element={<Layout />}>
               <Route path='/' element={<Navigate to='/timeline' replace />} />
               {/* <Route path='/dashboard' element={<Dashboard />} /> */}

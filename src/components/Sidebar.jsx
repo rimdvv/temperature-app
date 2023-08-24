@@ -15,6 +15,7 @@ import {
 import {
   ChevronLeft,
   ChevronRightOutlined,
+  ChatOutlined,
   HomeOutlined,
   ThermostatOutlined,
   ViewTimelineOutlined,
@@ -30,13 +31,13 @@ const navItems = [
   //   text: 'Dashboard',
   //   icon: <HomeOutlined />,
   // },
-  // {
-  //   text: 'Insights',
-  //   icon: null,
-  // },
   {
     text: 'Timeline',
     icon: <ViewTimelineOutlined />,
+  },
+  {
+    text: 'Chat',
+    icon: <ChatOutlined />,
   },
   // {
   //   text: 'Temperature',
@@ -112,20 +113,7 @@ const Sidebar = ({
             </Box>
             <List>
               {navItems.map(({ text, icon }) => {
-                if (!icon) {
-                  return (
-                    <Typography
-                      variant='h5'
-                      color={theme.palette.primary.main}
-                      key={text}
-                      sx={{ m: '2rem 0 1rem 2rem' }}
-                    >
-                      {text}
-                    </Typography>
-                  );
-                }
                 const lcText = text.toLowerCase();
-
                 return (
                   <ListItem key={text} disablePadding>
                     <ListItemButton

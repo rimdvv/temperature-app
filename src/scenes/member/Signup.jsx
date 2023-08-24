@@ -1,8 +1,18 @@
 import { useState } from 'react';
+import {
+  Box,
+  Input,
+  TextField,
+  Typography,
+  useTheme,
+  Button,
+  FormControl,
+} from '@mui/material';
+import SharedInput from '../../components/SharedInput';
 
 const Signup = () => {
   const [values, setValues] = useState({
-    username: '',
+    username: 'hey',
     email: '',
     password: '',
     confirmPassword: '',
@@ -15,7 +25,7 @@ const Signup = () => {
       type: 'text',
       placeholder: 'Username',
       errorMessage:
-        "Username should be 3-16 characters and shouldn't include any special character!",
+        "Username should be 3-16 characters and shouldn't include any special character",
       label: 'Username',
       pattern: '^[A-Za-z0-9]{3,16}$',
       required: true,
@@ -25,7 +35,7 @@ const Signup = () => {
       name: 'email',
       type: 'email',
       placeholder: 'Email',
-      errorMessage: 'It should be a valid email address!',
+      errorMessage: 'It should be a valid email address',
       label: 'Email',
       required: true,
     },
@@ -36,7 +46,7 @@ const Signup = () => {
       type: 'password',
       placeholder: 'Password',
       errorMessage:
-        'Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!',
+        'Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character',
       label: 'Password',
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
@@ -46,7 +56,7 @@ const Signup = () => {
       name: 'confirmPassword',
       type: 'password',
       placeholder: 'Confirm Password',
-      errorMessage: "Passwords don't match!",
+      errorMessage: "Password doesn't match",
       label: 'Confirm Password',
       pattern: values.password,
       required: true,
@@ -55,6 +65,7 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('values', values);
   };
 
   const onChange = (e) => {
@@ -62,20 +73,19 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>Register</h1>
-        {/* {inputs.map((input) => (
-          <FormInput
-            key={input.id}
-            {...input}
-            value={values[input.name]}
-            onChange={onChange}
-          />
-        ))} */}
-        <button>Submit</button>
-      </form>
-    </div>
+    <Box m='1.5rem 2.5rem'>
+      <div>dho</div>
+      <SharedInput />
+      {inputs.map((item) => {
+        <SharedInput
+          key={item.id}
+          value={values[item.name]}
+          onChange={onChange}
+          {...item}
+        />;
+      })}
+      <Button>Sign up</Button>
+    </Box>
   );
 };
 
