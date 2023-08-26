@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Box, TextField, Typography, useTheme, Button } from '@mui/material';
 import logo from '../../assets/logo.svg';
 import { useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth, db } from '../../firebase';
+import { doc, setDoc } from 'firebase/firestore';
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -10,7 +13,7 @@ const Signup = () => {
     password: '',
     confirmPassword: '',
   });
-  console.log('values', values);
+  //   console.log('values', values);
   const [isUsernameValid, setIsUsernameValid] = useState(true);
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isPasswordValid, setIsPasswordValid] = useState(true);
@@ -19,9 +22,35 @@ const Signup = () => {
   const theme = useTheme();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('values', values);
+    const email = values.email;
+    const password = values.password;
+    const username = values.username;
+
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      console.log('res', res);
+      try {
+        await updateProfile(res.user, {
+          displayName: username,
+        });
+        //create user on firestore
+        await setDoc(doc(db, 'users', res.user.uid), {
+          uid: res.user.uid,
+          displayName: username,
+          email,
+        });
+
+        //create empty user chats on firestore
+        await setDoc(doc(db, 'userChats', res.user.uid), {});
+        navigate('/login');
+      } catch (err) {
+        console.log(err);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onChange = (e) => {
@@ -87,6 +116,7 @@ const Signup = () => {
           flexDirection='column'
           marginTop='4rem'
           gap='1rem'
+          onSubmit={handleSubmit}
         >
           <TextField
             variant='standard'
@@ -199,7 +229,7 @@ const Signup = () => {
           />
           <Box>
             <Button
-              // onClick={onClick}
+              type='submit'
               sx={{
                 padding: '0.5rem 2rem',
                 marginTop: '3rem',
