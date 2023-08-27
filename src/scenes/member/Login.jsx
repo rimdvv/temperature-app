@@ -2,19 +2,31 @@ import { useState } from 'react';
 import { Box, TextField, Typography, useTheme, Button } from '@mui/material';
 import logo from '../../assets/logo.svg';
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 const Login = () => {
   const [values, setValues] = useState({
     email: '',
     password: '',
   });
-  console.log('values', values);
+  // console.log('values', values);
 
   const theme = useTheme();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const email = values.email;
+    const password = values.password;
+
+    try {
+      const res = await signInWithEmailAndPassword(auth, email, password);
+      console.log('res', res);
+      navigate('/chat');
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onChange = (e) => {
@@ -35,6 +47,8 @@ const Login = () => {
           justifyContent='center'
           alignItems='center'
           marginTop='2rem'
+          sx={{ cursor: 'pointer' }}
+          onClick={() => navigate('/')}
         >
           <img src={logo} alt='logo' height='56px' width='56px' />
           <Typography
@@ -48,6 +62,7 @@ const Login = () => {
           </Typography>
         </Box>
         <Box
+          onSubmit={handleSubmit}
           component='form'
           display='flex'
           justifyContent='center'
@@ -103,7 +118,6 @@ const Login = () => {
           />
           <Box>
             <Button
-              // onClick={onClick}
               sx={{
                 padding: '0.5rem 2rem',
                 marginTop: '3rem',
@@ -116,6 +130,7 @@ const Login = () => {
                 height: '44px',
               }}
               variant='contained'
+              type='submit'
             >
               Log in
             </Button>

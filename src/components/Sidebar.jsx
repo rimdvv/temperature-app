@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Box,
-  Divider,
   Drawer,
   IconButton,
   List,
@@ -15,12 +14,8 @@ import {
 import {
   ChevronLeft,
   ChevronRightOutlined,
-  ChatOutlined,
-  HomeOutlined,
-  ThermostatOutlined,
+  SmsOutlined,
   ViewTimelineOutlined,
-  MedicationOutlined,
-  BoltRounded,
 } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -37,16 +32,8 @@ const navItems = [
   },
   {
     text: 'Chat',
-    icon: <ChatOutlined />,
+    icon: <SmsOutlined />,
   },
-  // {
-  //   text: 'Temperature',
-  //   icon: <ThermostatOutlined />,
-  // },
-  // {
-  //   text: 'Medicine',
-  //   icon: <MedicationOutlined />,
-  // },
 ];
 
 const Sidebar = ({

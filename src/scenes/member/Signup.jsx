@@ -95,6 +95,8 @@ const Signup = () => {
           justifyContent='center'
           alignItems='center'
           marginTop='2rem'
+          sx={{ cursor: 'pointer' }}
+          onClick={() => navigate('/')}
         >
           <img src={logo} alt='logo' height='56px' width='56px' />
           <Typography
