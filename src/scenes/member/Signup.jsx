@@ -30,7 +30,7 @@ const Signup = () => {
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      console.log('res', res);
+      // console.log('res', res);
       try {
         await updateProfile(res.user, {
           displayName: username,
