@@ -6,25 +6,22 @@ function ChatContainerInput() {
     <Box
       display='flex'
       alignItems='center'
-      justifyContent='center'
+      // justifyContent='center'
       sx={{
         position: 'absolute',
         bottom: 0,
+        width: '100%',
       }}
     >
-      <Box sx={{ width: '400px' }}>
-        <TextField
-          fullWidth
-          width='240px'
-          size='small'
-          placeholder='Type Message..'
-          variant='outlined'
-          sx={{ margin: '1rem 0' }}
-        />
-      </Box>
-      <Box flexGrow={1}>
-        <Typography>Send</Typography>
-      </Box>
+      <TextField
+        // fullWidth
+        size='small'
+        placeholder='Type Message..'
+        variant='outlined'
+        sx={{ margin: '1rem 0', width: '70%' }}
+      />
+
+      <Typography>Send</Typography>
     </Box>
   );
 }

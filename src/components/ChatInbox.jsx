@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
   Box,
   Avatar,
@@ -6,16 +6,23 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
+  useTheme,
 } from '@mui/material';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
-import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { ChatContext } from '../context/ChatContext';
 
 function ChatInbox() {
   const [inbox, setInbox] = useState([]);
+  const theme = useTheme();
 
   const { currentUser } = useContext(AuthContext);
+  const { dispatch } = useContext(ChatContext);
+
+  const handleSelect = (user) => {
+    dispatch({ type: 'CHANGE_USER', payload: user });
+  };
 
   useEffect(() => {
     const getInbox = () => {
@@ -28,19 +35,31 @@ function ChatInbox() {
     };
     currentUser.uid && getInbox();
   }, [currentUser.uid]);
-  // console.log('inbox', inbox);
+
   // console.log('inbox to array', Object.entries(inbox));
   return (
     <Box m='0.5rem 1rem'>
       <List>
         {Object.entries(inbox)?.map((item) => (
-          <ListItem key={item[0]}>
+          <ListItem
+            key={item[0]}
+            onClick={() => handleSelect(item[1].userInfo)}
+            sx={{
+              cursor: 'pointer',
+              borderRadius: '10px',
+              '&:hover': {
+                backgroundColor: theme.palette.background.alt,
+              },
+            }}
+          >
             <ListItemAvatar>
-              <Avatar />
+              <Avatar>
+                {item[1].userInfo.displayName.charAt(0).toLocaleUpperCase()}
+              </Avatar>
             </ListItemAvatar>
             <ListItemText
               primary={item[1].userInfo.displayName}
-              secondary='Leave a message'
+              secondary={item[1].lastMessage?.text}
             />
           </ListItem>
         ))}
