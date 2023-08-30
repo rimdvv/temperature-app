@@ -1,9 +1,5 @@
 import React, { useContext, useState } from 'react';
-import {
-  Menu as MenuIcon,
-  AddCircleOutlineRounded,
-  Logout,
-} from '@mui/icons-material';
+import { Menu as MenuIcon, Logout } from '@mui/icons-material';
 import {
   AppBar,
   Button,

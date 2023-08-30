@@ -35,7 +35,12 @@ function ChatContainerBody() {
     data.chatId && getMessages();
   }, [data.chatId]);
   return (
-    <Box>
+    <Box
+      sx={{
+        height: 'calc(100% - 100px)',
+        overflow: 'scroll',
+      }}
+    >
       <Box
         display='flex'
         flexDirection='row-reverse'

@@ -16,7 +16,6 @@ function ChatContainer() {
         borderRadius: '12px',
         padding: '1rem 1.5rem',
         height: 'calc(100vh - 138px)',
-        position: 'relative',
       }}
     >
       <ChatContainerHead />
