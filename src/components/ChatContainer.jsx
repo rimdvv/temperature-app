@@ -9,7 +9,6 @@ function ChatContainer() {
 
   return (
     <Box
-      m='0 1rem'
       sx={{
         border: 1,
         borderColor: '#D1D1D1',

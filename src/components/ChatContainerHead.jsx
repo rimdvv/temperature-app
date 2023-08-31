@@ -14,7 +14,7 @@ import { ChatContext } from '../context/ChatContext';
 
 function ChatContainerHead() {
   const { data } = useContext(ChatContext);
-  console.log('datachatcontainer', data);
+  // console.log('datachatcontainer', data);
   return (
     <Box>
       <Box display='flex' alignItems='center' justifyContent='center' mb='1rem'>

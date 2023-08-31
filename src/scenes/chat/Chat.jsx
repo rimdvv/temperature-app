@@ -6,18 +6,18 @@ import ChatSidebar from '../../components/ChatSidebar';
 function Chat() {
   return (
     <Box display='flex' m='1.5rem 2.5rem'>
-      {/* <Box width='360px'>
+      <Box width='360px'>
         <ChatSidebar />
       </Box>
       <Box flexGrow={1}>
         <ChatContainer />
-      </Box> */}
-      <Box sx={{ width: 1 / 3 }}>
+      </Box>
+      {/* <Box sx={{ width: 1 / 3 }}>
         <ChatSidebar />
-      </Box>
-      <Box sx={{ width: 2 / 3 }}>
+      </Box> */}
+      {/* <Box sx={{ width: 2 / 3 }}>
         <ChatContainer />
-      </Box>
+      </Box> */}
     </Box>
   );
 }

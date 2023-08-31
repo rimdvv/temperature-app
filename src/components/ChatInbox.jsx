@@ -40,29 +40,31 @@ function ChatInbox() {
   return (
     <Box m='0.5rem 1rem'>
       <List>
-        {Object.entries(inbox)?.map((item) => (
-          <ListItem
-            key={item[0]}
-            onClick={() => handleSelect(item[1].userInfo)}
-            sx={{
-              cursor: 'pointer',
-              borderRadius: '10px',
-              '&:hover': {
-                backgroundColor: theme.palette.background.alt,
-              },
-            }}
-          >
-            <ListItemAvatar>
-              <Avatar>
-                {item[1].userInfo.displayName.charAt(0).toLocaleUpperCase()}
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={item[1].userInfo.displayName}
-              secondary={item[1].lastMessage?.text}
-            />
-          </ListItem>
-        ))}
+        {Object.entries(inbox)
+          ?.sort((a, b) => b[1].date - a[1].date)
+          .map((item) => (
+            <ListItem
+              key={item[0]}
+              onClick={() => handleSelect(item[1].userInfo)}
+              sx={{
+                cursor: 'pointer',
+                borderRadius: '10px',
+                '&:hover': {
+                  backgroundColor: theme.palette.background.alt,
+                },
+              }}
+            >
+              <ListItemAvatar>
+                <Avatar>
+                  {item[1].userInfo.displayName.charAt(0).toLocaleUpperCase()}
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary={item[1].userInfo.displayName}
+                secondary={item[1].lastMessage?.text}
+              />
+            </ListItem>
+          ))}
       </List>
     </Box>
   );

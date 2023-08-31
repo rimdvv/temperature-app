@@ -64,7 +64,7 @@ function CreateChat() {
 
       if (!res.exists()) {
         await setDoc(doc(db, 'AllChats', combinedId), {
-          message: [],
+          messages: [],
         });
         await updateDoc(doc(db, 'userChats', currentUser.uid), {
           [combinedId + '.userInfo']: {
