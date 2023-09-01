@@ -84,7 +84,7 @@ function CreateChat() {
     } catch (err) {
       console.log(err);
     }
-    setSearchRes('');
+    setSearchRes(null);
   };
 
   return (

@@ -23,7 +23,7 @@ const Login = () => {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       // console.log('res', res);
-      navigate('/chat');
+      navigate('/');
     } catch (err) {
       console.log(err);
     }
