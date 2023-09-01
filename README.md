@@ -23,7 +23,7 @@ Tempo는 소아 건강 관리 앱입니다.
 3. 회원가입/로그인<br><br>
       ![화면-기록-2023-09-01-오후-3 35 36](https://github.com/rimdvv/temperature-app/assets/122962117/42a154f2-4eab-4f92-81b9-839a5d35500a)
 
-4. 채팅<br><br>
+4. 채팅(로그인 시 가능)<br><br>
       ![화면-기록-2023-09-01-오후-4 16 48](https://github.com/rimdvv/temperature-app/assets/122962117/d03731f8-cec4-4cdc-9199-ba1fb9b8fc40)
       ![화면-기록-2023-09-01-오후-4 34 00](https://github.com/rimdvv/temperature-app/assets/122962117/b0e2be59-5617-41d2-80d4-ec379383cb28)
 
