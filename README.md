@@ -3,6 +3,9 @@
 ## 프로젝트 소개
 Tempo는 소아 건강 관리 앱입니다. 
 
+## 배포 주소
+[https://temperature-1076sf0vy-rimdvv.vercel.app/](https://temperature-1076sf0vy-rimdvv.vercel.app/)
+
 ## 주요 기능
 
 1. 아이의 건강 관리<br><br>
